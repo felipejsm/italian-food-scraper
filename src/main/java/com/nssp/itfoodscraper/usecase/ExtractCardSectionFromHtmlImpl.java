@@ -1,9 +1,11 @@
 package com.nssp.itfoodscraper.usecase;
 
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,6 +24,13 @@ public class ExtractCardSectionFromHtmlImpl implements ExtractCardSectionFromHtm
             AtomicBoolean ongoing = new AtomicBoolean(true);
             anchors.stream().takeWhile(value -> ongoing.get()).forEach( a -> {
                 HtmlAnchor link = (HtmlAnchor) a;
+                recipes.append(baseUrl).append(link.getHrefAttribute().replaceFirst("/", ""));
+                this.recipePage.getPAgeByUrl(recipes.toString());
+                try {
+                    recipePage.get(link.click());
+                } catch(IOException e) {
+                    e.getMessage();
+                }
               //  recipes.append("Title: ").append(link.getAttribute("title").replace(',', ';'));
                // recipes.append("\n");
                 recipes.append(baseUrl).append(link.getHrefAttribute().replaceFirst("/", ""));
@@ -29,7 +38,7 @@ public class ExtractCardSectionFromHtmlImpl implements ExtractCardSectionFromHtm
                 ongoing.set(false);
 
             });
-            recipePage.get(recipes.toString());
+
         }
         return recipes.toString();
     }

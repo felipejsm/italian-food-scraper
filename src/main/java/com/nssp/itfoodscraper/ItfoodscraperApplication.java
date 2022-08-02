@@ -18,6 +18,7 @@ public class ItfoodscraperApplication {
     public CommandLineRunner run(ExtractCardSectionFromHtml executeExtraction) {
         return args -> {
             var recipes = executeExtraction.getRecipes("https://foodnetwork.co.uk/italian-family-dinners/");
+           // var recipes = executeExtraction.getRecipes("https://foodnetwork.co.uk/recipes/linguine-alla-parmigiana/");
             System.out.println(recipes);
         };
     }

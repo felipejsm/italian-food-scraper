@@ -1,0 +1,6 @@
+com\nssp\itfoodscraper\usecase\ScrapeFullHtmlPageImpl.class
+com\nssp\itfoodscraper\usecase\ScrapeFullHtmlPage.class
+com\nssp\itfoodscraper\configuration\ScrapperConfiguration.class
+com\nssp\itfoodscraper\usecase\ExtractCardSectionFromHtml.class
+com\nssp\itfoodscraper\ItfoodscraperApplication.class
+com\nssp\itfoodscraper\usecase\ExtractCardSectionFromHtmlImpl.class
