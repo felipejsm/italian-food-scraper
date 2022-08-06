@@ -15,6 +15,7 @@ public class ScrapperConfiguration {
             webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
             webClient.getOptions().setThrowExceptionOnScriptError(false);
             webClient.getOptions().setPrintContentOnFailingStatusCode(false);
+            webClient.getOptions().setRedirectEnabled(false);
             return webClient;
         }
     }

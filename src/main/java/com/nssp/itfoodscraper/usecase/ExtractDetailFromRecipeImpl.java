@@ -2,39 +2,38 @@ package com.nssp.itfoodscraper.usecase;
 
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSection;
-import com.gargoylesoftware.htmlunit.javascript.host.html.HTMLDivElement;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Stream;
 
 @Component
 @AllArgsConstructor
 public class ExtractDetailFromRecipeImpl implements ExtractDetailFromRecipe {
-    private ScrapeFullHtmlPage fullHtmlPage;
+    private static final String INGREDIENTS_XPATH = "//div[normalize-space(@class)='recipe-tab-container']//div[normalize-space(@class)='ingredient']";
+    private static final String METHOD_XPATH = "//div[@class='recipe-text']//p";
+    private static final String HEADER_XPATH = "//ul[@class='recipe-head']//li";
+    private static final String DESCRIPTION_XPATH = "//h1[@itemprop='name'] | //h2[@itemprop='description']";
     @Override
-    public String get(HtmlPage newPage) {
-        var sections = newPage.getByXPath("//section[@class='article-head']");
-        for (Object section: sections) {
-            var s = (HtmlSection) section;
-            System.out.println(s.toString());
+    public String getIngredients(HtmlPage recipePage) {
+        var ingredients = recipePage.getByXPath(INGREDIENTS_XPATH);
+        for (Object ingredient: ingredients) {
+            var ingred = (HtmlDivision) ingredient;
+            System.out.println(ingred.getTextContent());
         }
         return null;
     }
 
     @Override
-    public String getPAgeByUrl(String uri) {
-        var ful = fullHtmlPage.requestByHtmlPage(uri);
-        var wr = ful.getWebResponse();
+    public String getMethod(HtmlPage recipePage) {
         return null;
     }
 
-    private void printRecipe(List<?> recipes) {
-        for (Object recipe : recipes) {
-           var r = (HtmlDivision) recipe;
-            System.out.println(r.getTextContent());
-        }
+    @Override
+    public String getRecipeHeader(HtmlPage recipePage) {
+        return null;
+    }
+
+    @Override
+    public String getRecipeDescription(HtmlPage recipePage) {
+        return null;
     }
 }
