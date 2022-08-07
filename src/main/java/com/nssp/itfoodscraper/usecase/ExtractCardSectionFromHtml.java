@@ -1,5 +1,9 @@
 package com.nssp.itfoodscraper.usecase;
 
+import com.nssp.itfoodscraper.model.Recipe;
+
+import java.util.List;
+
 public interface ExtractCardSectionFromHtml {
-    String getRecipes(String htmlPage);
+    List<Recipe> getRecipes(String htmlPage);
 }

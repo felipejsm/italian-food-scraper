@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ItfoodscraperApplication {
-
+    private static final String URL = "https://foodnetwork.co.uk/italian-family-dinners/";
     public static void main(String[] args) {
         SpringApplication.run(ItfoodscraperApplication.class, args);
     }
@@ -17,8 +17,7 @@ public class ItfoodscraperApplication {
     @Bean
     public CommandLineRunner run(ExtractCardSectionFromHtml executeExtraction) {
         return args -> {
-            var recipes = executeExtraction.getRecipes("https://foodnetwork.co.uk/italian-family-dinners/");
-           // var recipes = executeExtraction.getRecipes("https://foodnetwork.co.uk/recipes/linguine-alla-parmigiana/");
+            var recipes = executeExtraction.getRecipes(URL);
             System.out.println(recipes);
         };
     }
